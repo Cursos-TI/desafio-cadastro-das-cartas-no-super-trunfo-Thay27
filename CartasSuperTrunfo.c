@@ -4,7 +4,7 @@
         char Estado[50];
         char Codigo[4];
         char Cidade[50];
-        int Populacao;
+        unsigned long int Populacao;
         float Area;
         float PIB;
         //pontos turísticos
@@ -13,6 +13,7 @@
         float DP;
         //PIB per capita
         float PPC; 
+        float SP; 
 
  };
     int main() {
@@ -33,7 +34,7 @@
             scanf(" %d", &carta1.PT);
 
             printf ("Digite a população: \n");
-            scanf (" %d", &carta1.Populacao);
+            scanf (" %lu", &carta1.Populacao);
 
             printf ("Digite a area (em KM²): \n ");
             scanf (" %f", &carta1.Area);
@@ -44,6 +45,9 @@
                   
             carta1.DP = carta1.Populacao / carta1.Area;
             carta1.PPC = carta1.PIB / carta1.Populacao;
+
+            carta1.SP = (unsigned long int)carta1.Populacao + carta1.Area + (float)carta1.PT + (float)carta1.PIB + (float)carta1.PPC + (1 / carta1.DP);
+
 
             printf ("Carta 1 Cadastrada com sucesso!\n\n");
             
@@ -63,7 +67,7 @@
             scanf ("%d", &carta2.PT);
 
             printf ("Digite a população: \n");
-            scanf ("%d", &carta2.Populacao);
+            scanf ("%lu", &carta2.Populacao);
 
             //float só aceita .
             printf ("Digite a area (em KM²): \n ");
@@ -74,7 +78,9 @@
 
             carta2.DP = carta2.Populacao / carta2.Area;
             carta2.PPC = carta2.PIB / carta2.Populacao;
-            
+
+            carta2.SP = (unsigned long int)carta2.Populacao + carta2.Area + (float)carta2.PT + (float)carta2.PIB + (float)carta2.PPC + (1 / carta2.DP);
+
 
             printf ("Carta 2 Cadastrada com sucesso!\n\n");
     
@@ -85,7 +91,7 @@
         printf ("Estado: %s\n", carta1.Estado);
         printf ("Código da carta: %s\n", carta1.Codigo);
         printf ("Cidade: %s\n", carta1.Cidade);
-        printf ("População: %d\n", carta1.Populacao);
+        printf ("População: %lu\n", carta1.Populacao);
         printf ("Area: %f\n", carta1.Area);
         printf ("PIB: %f\n", carta1.PIB);
         printf ("Pontos Turisticos: %d\n", carta1.PT);
@@ -97,7 +103,7 @@
         printf ("Estado: %s\n", carta2.Estado);
         printf ("Código da carta: %s\n", carta2.Codigo);
         printf ("Cidade: %s\n", carta2.Cidade);
-        printf ("População: %d\n", carta2.Populacao);
+        printf ("População: %lu\n", carta2.Populacao);
         printf ("Area: %f\n", carta2.Area);
         printf ("PIB: %f\n", carta2.PIB);
         printf ("Pontos Turisticos: %d\n", carta2.PT);
@@ -105,9 +111,20 @@
         printf ("PIB per Capita: %f\n", carta2.PPC);
 
 
+    printf ("\n Qual carta vence? \n");
+
+        
+        printf("População: Carta %d venceu (%d)\n", 1 + (carta1.Populacao <= carta2.Populacao), carta1.Populacao > carta2.Populacao);
+        printf("Área: Carta %d venceu (%d)\n", 1 + (carta1.Area <= carta2.Area), carta1.Area > carta2.Area);
+        printf("PIB: Carta %d venceu (%d)\n", 1 + (carta1.PIB <= carta2.PIB), carta1.PIB > carta2.PIB);
+        printf("Pontos Turísticos: Carta %d venceu (%d)\n", 1 + (carta1.PT <= carta2.PT), carta1.PT > carta2.PT);
+        printf("Densidade Populacional: Carta %d venceu (%d)\n", 1 + (carta1.DP >= carta2.DP), carta1.DP < carta2.DP); // menor carta vence
+        printf("PIB per Capita: Carta %d venceu (%d)\n", 1 + (carta1.PPC <= carta2.PPC), carta1.PPC > carta2.PPC);
+        printf("Super Poder: Carta %d venceu (%d)\n", 1 + (carta1.SP <= carta2.SP), carta1.SP > carta2.SP);
+
+    
 
     return 0;
 
 
     }
-
